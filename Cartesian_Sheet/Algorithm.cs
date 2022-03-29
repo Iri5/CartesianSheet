@@ -20,13 +20,12 @@ namespace Cartesian_Sheet
             while (x <= to)
             {
                 y = x * Math.Sqrt((l + x) / (l - 3 * x));
-                if (y != NaN)
+                if (!Double.IsNaN(y))
                 {
-
                     list.Add(new FunctionArg() { X = (Math.Round(x, toRound)), Y = (Math.Round(y, 4)) });
                 }
                 y = -(x * Math.Sqrt((l + x) / (l - 3 * x)));
-                if (y != double.NaN)
+                if (!Double.IsNaN(y))
                 {
                     list.Add(new FunctionArg() { X = (Math.Round(x, toRound)), Y = (Math.Round(y, 4)) });
                 }
@@ -34,10 +33,7 @@ namespace Cartesian_Sheet
             }
             return list;
         }
-        //public void Function()
-        //{
-        //    y = x * Math.Sqrt((l + x) / (l - 3 * x));
-        //}
+        
         public void RightStep(ref double rightStep, double to, double from)
         {
             double distance = to - from;
