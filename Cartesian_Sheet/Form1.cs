@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+using System.Data.Common;
 namespace Cartesian_Sheet
 {
     public partial class Form1 : Form
@@ -214,6 +214,98 @@ namespace Cartesian_Sheet
                 return;
             }
             e.Handled = true;
+        }
+
+        private void saveTheResultToAFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Algorithm algorithm = new Algorithm();
+            List<FunctionArg> list = algorithm.SaveToList(leftBorder, rightBorder, step, parameterA);
+            FileData f = new FileData();
+            f.SaveResults( rightBorder.ToString(),  leftBorder.ToString(),  step.ToString(),  parameterA.ToString(), list);
+        }
+
+        private void saveTheInputToAFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            leftBorder = Convert.ToDouble(textBox_from.Text);
+            rightBorder = Convert.ToDouble(textBox_to.Text);
+            step = Convert.ToDouble(textBox_step.Text);
+            parameterA = Convert.ToDouble(textBox_param.Text);
+            FileData f = new FileData();
+            f.SaveInput(leftBorder.ToString(), rightBorder.ToString(), step.ToString(), parameterA.ToString());
+        }
+        bool GetDouble(string text, out double num)
+        {
+            return (double.TryParse(text, out num));
+        }
+        bool CheckData(string strLeftBorder, string strRightBorder, string strStep, string strA)
+        {
+            bool flag = true;
+            if (!GetDouble(strA, out parameterA))
+            {
+                flag = false;
+            }
+            
+            if (!GetDouble(strLeftBorder, out leftBorder))
+            {
+                flag = false;
+            }
+            if (!GetDouble(strRightBorder, out rightBorder))
+            {
+                flag = false;
+            }
+            if (!GetDouble(strStep, out step))
+            {
+                flag = false;
+            }
+            if ((rightBorder - leftBorder) - step <= 0)
+            {
+                flag = false;
+            }
+            if (leftBorder >= rightBorder)
+            {
+                flag = false;
+            }
+            if (parameterA == 0 )
+            {
+                flag = false;
+            }
+            return flag;
+        }
+        private void enterDataFromTheFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileTable = new OpenFileDialog();
+            fileTable.Filter = "Text files(*.txt)|*.txt";
+            fileTable.ShowDialog();
+            string filename = fileTable.FileName;
+            try
+            {
+                string[] readText = System.IO.File.ReadAllLines(filename);
+                if (readText.Length >= 4)
+                {
+                    if (CheckData(readText[0], readText[1], readText[2], readText[3]))
+                    {
+                        textBox_from.Text = readText[0];
+                        textBox_to.Text = readText[1];
+                        textBox_step.Text = readText[2];
+                        textBox_param.Text = readText[3];
+                    }
+                    else
+                    {
+                        textBox_from.Text = "";
+                        textBox_to.Text = "";
+                        textBox_step.Text = "";
+                        textBox_param.Text = "";
+                        MessageBox.Show("Invalid data format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                    MessageBox.Show("Invalid data format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch
+            {
+                MessageBox.Show("File was not selected, data was not read", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
         }
         private void textBox_step_KeyPress(object sender, KeyPressEventArgs e)
         {
