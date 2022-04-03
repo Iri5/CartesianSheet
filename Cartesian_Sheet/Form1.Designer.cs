@@ -36,6 +36,9 @@
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enterDataFromTheFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveTheResultToAFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveTheInputToAFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -77,7 +80,10 @@
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buildToolStripMenuItem,
-            this.clearToolStripMenuItem});
+            this.clearToolStripMenuItem,
+            this.enterDataFromTheFileToolStripMenuItem,
+            this.saveTheResultToAFileToolStripMenuItem,
+            this.saveTheInputToAFileToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
@@ -85,16 +91,37 @@
             // buildToolStripMenuItem
             // 
             this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
-            this.buildToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.buildToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.buildToolStripMenuItem.Text = "Build";
             this.buildToolStripMenuItem.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
             // 
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // enterDataFromTheFileToolStripMenuItem
+            // 
+            this.enterDataFromTheFileToolStripMenuItem.Name = "enterDataFromTheFileToolStripMenuItem";
+            this.enterDataFromTheFileToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.enterDataFromTheFileToolStripMenuItem.Text = "Enter data from the file";
+            this.enterDataFromTheFileToolStripMenuItem.Click += new System.EventHandler(this.enterDataFromTheFileToolStripMenuItem_Click);
+            // 
+            // saveTheResultToAFileToolStripMenuItem
+            // 
+            this.saveTheResultToAFileToolStripMenuItem.Name = "saveTheResultToAFileToolStripMenuItem";
+            this.saveTheResultToAFileToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.saveTheResultToAFileToolStripMenuItem.Text = "Save the result to a file";
+            this.saveTheResultToAFileToolStripMenuItem.Click += new System.EventHandler(this.saveTheResultToAFileToolStripMenuItem_Click);
+            // 
+            // saveTheInputToAFileToolStripMenuItem
+            // 
+            this.saveTheInputToAFileToolStripMenuItem.Name = "saveTheInputToAFileToolStripMenuItem";
+            this.saveTheInputToAFileToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.saveTheInputToAFileToolStripMenuItem.Text = "Save the input to a file";
+            this.saveTheInputToAFileToolStripMenuItem.Click += new System.EventHandler(this.saveTheInputToAFileToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -328,6 +355,9 @@
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.Button button_build;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem enterDataFromTheFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveTheResultToAFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveTheInputToAFileToolStripMenuItem;
     }
 }
 
