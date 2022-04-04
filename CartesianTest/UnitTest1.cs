@@ -55,8 +55,6 @@ namespace CartesianTest
 
             right.Add(new FunctionArg() { X = 0, Y = 0 });
             right.Add(new FunctionArg() { X = 0, Y = 0 });
-            right.Add(new FunctionArg() { X = 1, Y = double.NaN });
-            right.Add(new FunctionArg() { X = 1, Y = double.NaN });
 
             List<FunctionArg> inProgram = new List<FunctionArg>();
             inProgram = algorithm.SaveToList(from, to, step, param);
@@ -85,11 +83,6 @@ namespace CartesianTest
             double param = 5;
             List<FunctionArg> right = new List<FunctionArg>();
 
-            right.Add(new FunctionArg() { X = -100, Y = double.NaN });
-            right.Add(new FunctionArg() { X = -100, Y = double.NaN });
-            right.Add(new FunctionArg() { X = -99, Y = double.NaN });
-            right.Add(new FunctionArg() { X = -99, Y = double.NaN });
-
             List<FunctionArg> inProgram = new List<FunctionArg>();
             inProgram = algorithm.SaveToList(from, to, step, param);
 
@@ -107,5 +100,8 @@ namespace CartesianTest
             }
             Assert.IsTrue(rightList.SequenceEqual(inProgramList));
         }
+        
     }
+    
+
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Data.Common;
+using System.Configuration;
 namespace Cartesian_Sheet
 {
     public partial class Form1 : Form
@@ -26,16 +26,6 @@ namespace Cartesian_Sheet
         private void buildToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button_build_Click(sender, e);
-        }
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Irina Bovchurova group 403 \n\n" +
-                "    The application is written by using WinForms technology to plot " +
-                "a Cartesian sheet function and output a table of function values.\n" +
-                "   The user sets the right and left border, step, coefficient.\n" +
-                "   If it is impossible to plot a function in a given interval, the user is given a warning " +
-                "about this with a suggestion to change the bordes of the interval.\n" +
-                "   If the graph of the function becomes a point or cannot be constructed, the user also sees a warning.", "About");
         }
         private void button_build_Click(object sender, EventArgs e)
         {
@@ -307,6 +297,9 @@ namespace Cartesian_Sheet
 
             }
         }
+
+       
+
         private void textBox_step_KeyPress(object sender, KeyPressEventArgs e)
         {
             bool right = RightKey(ref e);
@@ -328,6 +321,7 @@ namespace Cartesian_Sheet
             }
             e.Handled = true;
         }
+
         private void textBox_param_KeyPress(object sender, KeyPressEventArgs e)
         {
             bool right = RightKey(ref e);
@@ -356,12 +350,37 @@ namespace Cartesian_Sheet
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            aboutToolStripMenuItem_Click(sender, e);
         }
 
         public Form1()
         {
             InitializeComponent();
+        }
+        private void ShowHello(object sender, EventArgs e)
+        {
+            if (bool.Parse(ConfigurationManager.AppSettings["showHello"]))
+            {
+                About about = new About();
+                about.ShowDialog();
+            }
+        }
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowGreetingForm();
+        }
+        private void showAboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            bool show = !bool.Parse(ConfigurationManager.AppSettings["showHello"]);
+            config.AppSettings.Settings["showHello"].Value = (show).ToString();
+            config.Save();
+            showAboutToolStripMenuItem1.Checked = show;
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+        
+        private void ShowGreetingForm()
+        {
+            new Cartesian_Sheet.About().ShowDialog();
         }
     }
 }

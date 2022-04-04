@@ -47,5 +47,29 @@ namespace Cartesian_Sheet
             System.IO.File.WriteAllLines(fileName, all);
             MessageBox.Show("Файл сохранен");
         }
+        public string OpenFile()
+        {
+            string text;
+            var openFileDialog = new OpenFileDialog();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            openFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            saveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                return null;
+            //получаем выбранный файл
+            string fileName = openFileDialog.FileName;
+            //читаем файл в строку
+            text = System.IO.File.ReadAllText(fileName);
+            if (text.Contains("Ключ"))
+            {
+                MessageBox.Show("Некорректный файл");
+                return null;
+            }
+            else
+            {
+                MessageBox.Show("Файл открыт");
+                return text;
+            }
+        }
     }
 }
