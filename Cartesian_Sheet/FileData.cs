@@ -15,8 +15,8 @@ namespace Cartesian_Sheet
             // получаем выбранный файл
             string fileName = saveFileDialog.FileName;
             // сохраняем текст в файл
-            System.IO.File.WriteAllText(fileName, "From:" + from + Environment.NewLine + "To:" + to 
-                + Environment.NewLine + "Step:" + step + Environment.NewLine + "Parameter:" + param);
+            System.IO.File.WriteAllText(fileName, from + Environment.NewLine + to 
+                + Environment.NewLine + step + Environment.NewLine  + param);
            
             MessageBox.Show("Файл сохранен");
         }
